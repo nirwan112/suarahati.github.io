@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Suara Siswa - SMA Negeri 2 Pinrang</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <!-- menambah gambar-->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+ 
+  <!-- STYLE DASAR AGAR TERLIHAT LEBIH BAGUS TAMPILANNYA -->
+ <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; background: #f7f7f7; overflow-x: hidden; }
+
+    header {
+      background: linear-gradient(90deg, #6dd5ed, #2193b0);
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+     
+    /* KUMPULAN BACKGROUND DI WEBSITENYA */
+    #home { background-image: url('homel.png'); background-size: cover; }
+    #about { background-image: url('qwertyuiopdsaxcvbnm.png'); background-size: cover; }
+    #contact { background-image: url('contact1.png'); background-size: cover; }
+    #login { background-image: url('admin.png'); background-size: cover; }
+    #kotak { background-image: url('kotak.jpg'); background-size: cover; }
+    #edukasi { background-image: url('kotak.png'); background-size: cover; }
+
+    /* UNTUK CARD NYA BIAR ADA KOTAKNYA DIBAGIAN CONTACT */
+    .card {
+      background-color: #ffffffbe;
+      border-radius: 12px;
+      box-shadow: 10px 4px 12px rgba(141, 141, 141, 0.853);
+      padding: 50px;
+      margin: 20px auto;
+      max-width: 500px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card1 {
+      color: #00c3ff;
+      background-color: #ffffffbe;
+      border-radius: 12px;
+      box-shadow: 10px 4px 12px rgba(167, 248, 255, 0.853);
+      padding: 50px;
+      margin: 20px auto;
+      max-width: 800px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+
+    /* LOGO UNTUK ITU YANG DI HEADER */
+    .logo { font-size: 26px; font-weight: bold; color: white; gap: 20px;}
+    
+    /* ITU YANG KAYAK HOME, ABOUT AS, CONTACT, LOGIN */
+    nav { display: flex; gap: 20px; }
+    nav a { text-decoration: none; color: white; font-weight: 600; transition: 0.3s; }
+    nav a:hover { color: #00c3ff; background-color: #ffffff; border-radius: 30px; padding: 5px;}
+
+    /*BIAR ADA TAMPILAN 3 BARIS*/
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: #84effd;
+        flex-direction: column;
+        display: none;
+        padding: 10px 0;
+      }
+      nav.active { display: flex; }
+      .hamburger { display: flex; }
+      .hero1 { width: 25px;
+      height: 3px;
+
+      }
+    }
+
+   /* BIAR BEDA BEDA HALAMAN, NDA SATU HALAMAN YANG BISA DI SCROLL */
+    .container { padding: 100px 30px; min-height: 90vh; display: none; animation: fadeIn 0.8s; }
+    .active { display: block; }
+
+    /* SEPERTI CARD TAPI UNTUK HALAMAN PERTAMA, YANG SELAMAT DATANG */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      /* background: linear-gradient(#ffffff00, #dbe9f400); */
+      padding: 50px;
+    }
+    .hero1 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero2 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 10px;
+      margin: 15px;
+    }
+    h1 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    h3 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+/* UNTUK WARNA MAUPUN UKURAN TEXT */
+    .hero-text { max-width: 50%; }
+    .hero-text h1 { color: #0b3d91; font-size: 48px; margin-bottom: 20px; }
+    .hero-text p { font-size: 18px; margin-bottom: 20px; }
+    .hero img { max-width: 30%; border-radius: 10px; }
+    .hero1 img { max-width: 15%; border-radius: 4px; }
+    .hero2 img { max-width: 100%; border-radius: 4px; }
+
+/* UNTUK TOMBOL TOMBOL SAMA KOLOM KOLOM KALAU MAU KASIH MASUK SESUATU */
+    form { max-width: 700px; margin: 20px auto; background: #ffffffc7; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+    
+    form input, form textarea {
+      width: 100%; margin-bottom: 15px; padding: 10px;
+      border: 1px solid #ccc; border-radius: 5px;
+    }
+    form button, button {
+      background: linear-gradient(135deg, #00c3ff);
+      color: #333;
+      border: none;
+      padding: 10px 40px;
+      border-radius: 50px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin: 10px;
+    }
+    form button:hover, button:hover {
+      background: linear-gradient(135deg, #15f987);
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      border-color: #0b3d91;
+      color: #000000;
+    }
+    form button:active, button:active {transform: scale(0.95);}
+
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .hero { flex-direction: column; text-align: center; }
+      .hero-text .hero img { max-width: 70%;}
+      .hero-text .hero2 img { max-width: 80%;}
+      .container { padding: 20px;}
+      .hero-text h1 { font-size: 28px; }
+      .hero-text p {font-size: 18px; color: #15f987;}
+      .button { align-items: center; justify-content: center}
+    }
+    /* FOOTER YANG DIBAWAH E */
+    footer { text-align: center; padding: 20px; background: linear-gradient(90deg, #6dd5ed, #2193b0); font-size: 14px; color: #ffffff; margin-top: 20px; }
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">Suara Hati Siswa</div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <nav id="navLinks">
+      <a href="#" onclick="showPage('home')">Home</a>
+      <a href="#" onclick="showPage('about')">About Us</a>
+      <a href="#" onclick="showPage('contact')">Contact</a>
+      <a href="#" onclick="showPage('edukasi')">Edukasi</a>
+      <a href="#" onclick="showPage('login')">Login Admin</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- SELECTION HOME NYA -->
+    <section id="home" class="container active">
+      <div class="hero">
+        <div class="hero-text">
+          <h1 style="color: #00c3ff;">Selamat Datang di Suara Hati Siswa</h1>
+          <p style="color: #ffffff;"><strong>Platform digital aspirasi siswa SMA Negeri 2 Pinrang. Mari sampaikan masalah, ide, inspirasi atau curhatanmu!</strong></p>
+          <button onclick="showPage('kotak')">Mulai Bercerita</button>
+        </div>
+        <img src="JURNAL.png" alt="Gambar SMA">
+      </div>
+    </section>
+
+    <!-- SELECTION ABOUT AS NYA -->
+  <section id="about" class="container">
+    <div class="hero2">
+    <img src="about.png" alt="Gambar SMA">
+    </div>
+    <br>
+    <div class="card1">
+    <h2><i class="fas fa-info-circle me-2"></i> Apa itu Website Suara Hati Siswa?</h2>
+    <p style="text-align:justify; max-width: 730px; margin: 20px auto; color: #080808;">
+      Website Suara Hati Siswa adalah sebuah inovasi digital yang dirancang sebagai wadah bebas bagi seluruh siswa SMA Negeri 2 Pinrang untuk berbagi cerita, inspirasi, ide, bahkan curhatan mereka seputar kehidupan di sekolah.
+      Melalui platform ini, setiap suara siswa dihargai dan diberikan ruang untuk berkembang tanpa batasan. <br> <br>
+      
+      Siswa juga dapat menyalurkan berbagai bentuk ekspresi mulai dari <strong>masalah</strong> yang dihadapi di lingkungan sekolah, <strong>ide-ide kreatif</strong> untuk kegiatan, <strong>inspirasi</strong> dalam bidang akademik maupun non-akademik, hingga <strong>curhatan personal</strong> tentang pengalaman mereka di SMA Negeri 2 Pinrang.
+      Setiap ungkapan yang disampaikan akan menjadi bahan refleksi berharga bagi pihak sekolah untuk menciptakan lingkungan belajar yang lebih nyaman, adil, dan memotivasi. <br><br>
+    </div>
+
+    <div class="card1">
+    <h2><i class="fas fa-info-circle me-2"></i> Keunggulan</h2>
+    <p style="text-align:justify; max-width: 730px; margin: 20px auto; color: #080808;">
+      Dengan tampilan yang sederhana dan ramah pengguna, website ini dirancang agar semua siswa, tanpa terkecuali, dapat dengan mudah menulis dan mengirimkan kisah atau aspirasi mereka.
+      Tidak diperlukan keahlian teknis khusus — cukup dengan beberapa klik, suara Anda sudah menjadi bagian dari perubahan.<br><br>
+      
+      Melalui fitur pengisian biodata sederhana dan pilihan kategori seperti "Masalah", "Inspirasi", "Ide", atau "Curhat", Suara Siswa memberikan kesempatan bagi setiap individu untuk menyampaikan isi hatinya dengan aman dan dihargai.
+      Semua kiriman yang masuk akan dibaca dengan penuh perhatian, dan menjadi bahan pertimbangan untuk langkah-langkah perbaikan di masa depan.<br><br></p>
+    </div>
+    <div class="card1">
+    <h2><i class="fas fa-info-circle me-2"></i> Tujuan</h2>
+    <p style="text-align:justify; max-width: 730px; margin: 20px auto; color: #080808;">
+      Lebih dari sekadar media komunikasi, Suara Siswa bertujuan membangun budaya keterbukaan, kejujuran, serta keberanian dalam bersuara di kalangan pelajar.
+      Kami percaya bahwa setiap cerita memiliki kekuatan untuk menginspirasi perubahan.
+      Dengan berpartisipasi di Suara Siswa, Anda tidak hanya mencurahkan isi hati, tetapi juga ikut membentuk SMA Negeri 2 Pinrang menjadi tempat belajar yang lebih hangat, inklusif, dan membanggakan.<br><br></p>
+    </div>
+    <h3 style="text-align:center; color: #00c3ff;">
+    <br>
+     <strong> Suara Hati Siswa : Bersuara bebas, didengar jadi solusi. Karena setiap suara berarti</strong>
+    </h3>
+  </section>
+
+<!-- SELECTION CONTACT NYA -->
+  <section id="contact" class="container">
+    <div style="text-align:center; color: #ffffff;">
+    <h2><i class="fas fa-phone me-2"></i> Hubungi Kami</h2>
+    </div>
+
+    <div class="card">
+    <div style="text-align:center;">
+      <p style="color: #000000b2;"><strong><i class="fas fa-phone me-2"></i>  WhatsApp:</strong>
+        <a href="https://wa.me/6281354217646" target="_blank">+62 813-5421-7646</a></p> <br>
+      <p style="color: #000000b2;"><strong><i class="fa-brands fa-instagram me-2"></i>  Instagram:</strong>
+        <a href="https://instagram.com/smandupi.official" target="_blank">@smandupi.official</a></p><br>
+      <p style="color: #000000b2;"><strong><i class="fa-brands fa-youtube me-2"></i>  Youtube:</strong>
+        <a href="https://www.youtube.com/@sman2pinrang" target="_blank">SMA Negeri 2 Pinrang</a></p><br>
+      <p style="color: #000000b2;"><strong><i class="fas fa-globe me-2"></i>  Smandupi:</strong>
+        <a href="https://sman2pinrang.sch.id/">sman2pinrang.sch.id</a></p><br>
+      <p style="color: #000000b2;"><strong><i class="fas fa-location-dot me-2"></i>  Alamat:</strong> 
+        Jl. Poros Pinrang - Polman, Bittoeng, Duampanua, Kabupaten Pinrang, Sulawesi Selatan 91253, Indonesia</p><br>
+    </div>
+    </div>
+    <div style="text-align:center;">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3977.2260494978616!2d119.5307654!3d-3.6558203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d945a37d35d7b3f%3A0xd44096b65eaf0203!2sSenior%20High%20School%202%20Pinrang!5e0!3m2!1sid!2sid!4v1717170000000!5m2!1sid!2sid"
+      width="90%"
+      height="350"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+
+    </div>
+  </section>
+
+   <!-- SELECTION KOTAK ISI HATINYA -->
+  <section id="kotak" class="container">
+
+    <div class="hero1">
+      <img src="JURNALH.png" alt="Gambar SMA">
+    </div>
+
+    <h1>Kotak Isi Hati</h1>
+    <form id="formInput">
+      <input type="text" id="nama" placeholder="Nama Lengkap" required>
+      <input type="text" id="ttl" placeholder="Tempat, Tanggal Lahir" required>
+      <input type="text" id="sekolah" placeholder="Asal Sekolah" required>
+      <input type="text" id="kelas" placeholder="Kelas" required>
+      <input type="text" id="alamat" placeholder="Alamat" required>
+      <textarea id="isiPesan" placeholder="Tulis pesan anda disini..." rows="4" required></textarea><br>
+      <button type="button" onclick="submitData('Masalah')">Submit Aduan</button>
+      <button type="button" onclick="submitData('Saran')">Submit Saran </button>
+      <button type="button" onclick="submitData('Curhat')"> Submit Curhat</button>
+    </form>
+  </section>
+
+  <!-- SELECTION EDUKASI -->
+  <section id="edukasi" class="container">
+  <div class="hero2">
+    <img src="about.png" alt="Gambar SMA">
+    </div>
+  <br>
+    <div class="card1">
+      <h2><i class="fas fa-comment me-2"></i> Apa Itu Curhat, Ide, Saran dan Masalah?</h2>
+      <ol style="text-align:justify; max-width: 730px; margin: 20px auto; color: #080808;">
+        <strong><li>  Curhat (Curahan Hati)</li></strong> Mengungkapkan perasaan pribadi kepada orang lain, biasanya tentang sesuatu yang mengganggu atau menyentuh hati.<br>
+        <strong>Contoh: </strong> "Akhir-akhir ini saya merasa kurang dihargai oleh teman-teman."
+        <strong><li>  Ide</li></strong> Gagasan atau pemikiran kreatif untuk solusi, inovasi, atau perubahan.<br>
+        <strong>Contoh: </strong> "Bagaimana kalau kita buat pojok baca di kelas?"
+        <strong><li>  Saran</li></strong> Usulan untuk perbaikan terhadap suatu hal<br>
+        <strong>Contoh: </strong> "Menurut saya, sebaiknya rapat diadakan setelah jam pelajaran selesai."
+        <strong><li>  Masalah</li></strong> Hal yang dianggap sebagai hambatan atau kesulitan yang perlu dipecahkan.<br>
+        <strong>Contoh: </strong> "Saya merasa tertekan dengan tugas yang terlalu banyak."
+      </ol>
+      </div>
+
+    <div class="card1">
+      <h2><i class="fas fa-question me-2"></i> Mengapa Setiap Remaja Harus Mengutarakan Isi Hatinya?</h2>
+      <ol style="text-align:justify; max-width: 730px; margin: 20px auto; color: #080808;">
+        <p> Mengutarakan isi hati atau curhat bukan tanda kelemahan—justru itu bentuk keberanian dan kepedulian terhadap diri sendiri. Berikut alasan pentingnya:</p> <br>
+        <strong><li><i  class="fas fa-heart me-2"></i>  Agar Emosi Tidak Terpendam</li></strong>
+        <p>Remaja sering mengalami perubahan suasana hati yang cepat. Jika emosi seperti sedih, marah, atau kecewa disimpan terus-menerus, itu bisa memicu stres, kecemasan, bahkan depresi. Dengan curhat, hati jadi lebih lega.</p> <br>
+        <strong><li><i  class="fas fa-brain me-2"></i>  Membantu Memahami Diri Sendiri</li></strong>
+        <p>Ketika berbicara tentang perasaan, remaja belajar mengenal diri: apa yang membuat mereka senang, kecewa, atau takut. Ini penting agar mereka tahu bagaimana cara menghadapi situasi yang sama di masa depan.</p> <br>
+        <strong><li><i  class="fas fa-person me-2"></i>  Melatih Kepercayaan dan Hubungan Sosial</li></strong>
+        <p>Curhat kepada teman, guru, atau orang tua yang dipercaya bisa membangun hubungan yang kuat dan saling mendukung. Orang lain jadi tahu apa yang kita butuhkan.</p> <br>
+        <strong><li><i  class="fas fa-comment me-2"></i>  Menghindari Kesalahpahaman</li></strong>
+        <p>Banyak konflik terjadi karena diam-diaman. Kalau remaja belajar menyampaikan isi hati dengan baik, mereka bisa mencegah salah paham dan memperjelas maksud atau keinginan mereka.</p> <br>
+        <strong><li><i  class="fas fa-star me-2"></i>  Meningkatkan Kesehatan Mental</li></strong>
+        <p>Berbagi perasaan dengan orang lain terbukti secara psikologis membantu menurunkan tekanan batin dan membuat pikiran lebih tenang. Remaja jadi lebih bahagia dan fokus.</p> <br>
+        <strong><li><i  class="fas fa-circle-exclamation me-2"></i>  Jangan Lupa</li></strong>
+        <p>Mengutarakan isi hati itu perlu, tapi juga penting memilih <strong>orang yang tepat, waktu yang pas, </strong> dan<strong> cara yang baik.</strong></p> <br>
+      </ol>
+    </div>
+
+    <div class="card1">
+      <h2><i class="fas fa-camera me-2"></i> Media atau Tempat yang Bisa Digunakan</h2>
+      <ul style="text-align:justify; max-width: 730px; margin: 20px auto; color: #080808;">
+        <strong><li>  Langsung kepada orangnya </strong> (tatap muka, dengan sopan).</li><br>
+        <strong><li>  Lewat tulisan  </strong> (surat, buku harian, email).</li><br>
+        <strong><li>  Melalui platform aspirasi  </strong> seperti kotak saran atau website suara hati siswa.</li><br>
+        <strong><li>  Lewat perantara  </strong> seperti guru BK, wali kelas, atau teman terpercaya.</li><br>
+      </ul>
+    </div>
+
+    <div class="card1">
+      <h2><i class="fas fa-circle-exclamation me-2"></i> Hal yang Perlu Dihindari </h2>
+      <ul style="text-align:justify; max-width: 730px; margin: 20px auto; color: #080808;">
+        <li>  Menyebarkan masalah pribadi ke media sosial secara sembarangan.</li><br>
+        <li>  Menggunakan kata-kata menyakitkan.</li><br>
+        <li>  Menyalahkan orang lain tanpa refleksi diri.</li><br>
+        <li>  Menyimpan masalah terlalu lama hingga berdampak buruk.</li><br>
+      </ul>
+    </div>
+
+    <div style="display: flex; justify-content: center; align-items: center;">
+      <iframe 
+        src="https://www.youtube.com/embed/_50igeHW7vw?si=Kg1x5IgPTHL7A3ec"
+        title="Kesehatan Mental" 
+        width="50%" 
+        height="200" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <br>
+    <div style="display: flex; justify-content: center; align-items: center;">
+      <iframe 
+        src="https://www.youtube.com/embed/1DmphC3Wozo?si=51bSSdTcyEAlXuVy" 
+        title="bagaimana orang sehat mengatur emosi mereka" 
+        width="50%" 
+        height="200" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    </section>
+  
+  <!-- SELECTION LOGINNYA KALAU MAU KE ADMIN -->
+  <section id="login" class="container">
+    <h1>Login Admin</h1>
+    <form onsubmit="event.preventDefault(); loginAdmin();">
+      <input type="text" id="adminUsername" placeholder="Username" required>
+      <input type="password" id="adminPassword" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+    <p id="loginError" style="color:red;text-align:center;margin-top:10px;"></p>
+  </section>
+
+
+
+  <!-- SELECTION ADMIN PANEL NYA, TEMPAT DI MASUKKAN DATA DATA -->
+  <section id="adminPanel" class="container" style="display:none;">
+    <h1>Dashboard Admin</h1>
+    <div id="adminContent"></div>
+    <button onclick="logoutAdmin()">Logout</button>
+  </section>
+</main>
+
+
+<!-- FOOTER NYA YANG DIBAGIAN BAWAH -->
+<footer>
+  &copy; <B>2025 SMA Negeri 2 Pinrang | Suara Hati Siswa</B>
+</footer>
+
+
+  <!-- SCRIPT NYA SEKALIGUS LINK LINK NYA -->
+<script>
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxGqXNJBT564u_NpvzvcdPQSFWOWzmRnDc1okGL6Zfq8-C8UpE9RyWfCrurv11u8CLj/exec";
+// NAVIGASI PINDAH HALAMANNYA
+
+    function showPage(id) {
+      const sections = document.querySelectorAll('.container');
+      sections.forEach(section => section.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+
+      // Tutup menu saat salah satu link diklik (mode mobile)
+      const nav = document.getElementById("navLinks");
+      if (window.innerWidth <= 768) {
+        nav.classList.remove("active");
+      }
+    }
+
+    function toggleMenu() {
+      const nav = document.getElementById("navLinks");
+      nav.classList.toggle("active");
+    }
+    // SIMPAN DATA DATA YANG SUDAH DI KASIH MASUK
+function submitData(kategori) {
+  const nama = document.getElementById('nama').value;
+  const ttl = document.getElementById('ttl').value;
+  const sekolah = document.getElementById('sekolah').value;
+  const kelas = document.getElementById('kelas').value;
+  const alamat = document.getElementById('alamat').value;
+  const isiPesan = document.getElementById('isiPesan').value;
+
+  if (nama && ttl && sekolah && kelas && alamat && isiPesan) {
+    fetch(WEB_APP_URL, {
+      method: "POST",
+      mode :"no-cors",
+      body: JSON.stringify({
+        nama: nama,
+        ttl: ttl,
+        sekolah: sekolah,
+        kelas: kelas,
+        alamat: alamat,
+        isiPesan: isiPesan,
+        kategori: kategori
+      }),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => response.text())
+    .then(data => {
+      alert('Data berhasil dikirim!');
+      document.getElementById('formInput').reset();
+    })
+    .catch(error => {
+      console.error('Error!', error.message);
+      alert('Terjadi kesalahan saat mengirim data.');
+    });
+  } else {
+    alert('Mohon lengkapi semua kolom sebelum mengirim!');
+  }
+}
+
+
+
+// LOGIN ADMINNYA
+function loginAdmin() {
+  const user = document.getElementById('adminUsername').value;
+  const pass = document.getElementById('adminPassword').value;
+  if (user === 'admin suara siswa' && pass === 'suarasiswasmandupi2') {
+    window.open("https://docs.google.com/spreadsheets/d/1Fs9uVoOE2BNNzw5_aDvA3xq5fKbQ9y7dfZLD9Ee2VeA/edit?gid=0#gid=0", "_blank");
+
+  } else {
+    document.getElementById('loginError').innerText = 'Username atau password salah!';
+  }
+}
+  </script>
+
+</body>
+</html>
